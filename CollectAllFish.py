@@ -27,18 +27,18 @@ def menu():
                 pygame.quit()
                 quit()
         screen.blit(menu_image,[0,0])
-        botão("Iniciar", 515, 280, 245, 90, LIGHT_BLUE, DARK_BLUE,"iniciar")
+        botao("Iniciar", 515, 280, 245, 90, LIGHT_BLUE, DARK_BLUE,"iniciar")
         pygame.mixer.music.stop()
         pygame.display.update()
         clock.tick(20)
 
-def botão(mensagem,x,y,l,a,ci,ca,ação=None):
+def botao(mensagem,x,y,l,a,ci,ca,acao=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
     if x+l> mouse[0] > x and y+a > mouse[1] > y:
         pygame.draw.rect(screen,ca,[x,y,l,a])
-        if click[0] == 1 and ação != None:
-            if ação == "iniciar":
+        if click[0] == 1 and acao != None:
+            if acao == "iniciar":
                 loop_do_jogo()
         
             for event in pygame.event.get():
@@ -56,7 +56,7 @@ def botão(mensagem,x,y,l,a,ci,ca,ação=None):
 
 class Block(pygame.sprite.Sprite):
     def __init__(self,color,width,height):
-        super().__init__()
+        super(Block, self).__init__()
         self.image = pygame.image.load("babelfish.png")
         self.rect = self.image.get_rect()
 
@@ -74,7 +74,7 @@ for i in range(50):
 class Player(pygame.sprite.Sprite):
 
     def __init__(self, x, y):
-        super().__init__()
+        super(Player, self).__init__()
 
         self.image = pygame.image.load("pinguim.png").convert()
         self.image.set_colorkey(BLACK)
@@ -114,7 +114,7 @@ class Player(pygame.sprite.Sprite):
 class Wall(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
 
-        super().__init__()
+        super(Wall, self).__init__()
 
         self.image = pygame.Surface([width, height])
         self.image.fill(BLUE)
